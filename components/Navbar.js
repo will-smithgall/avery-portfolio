@@ -9,7 +9,7 @@ const projectLinks = [
     { title: "Marketing", url: "/marketing" },
     { title: "Social Media", url: "/social-media" },
     { title: "Technical Writing", url: "/technical-writing" },
-    { title: "Ad Campains", url: "/ad-campaigns" },
+    { title: "Ad Campaigns", url: "/ad-campaigns" },
     { title: "Graphic Design", url: "/graphic-design" },
 ];
 
@@ -85,7 +85,9 @@ export default function Navbar() {
                     // Laptop Navbar Code Here
                     <nav className={`h-fit ${bgColor} py-3 px-4`}>
                         <div className="flex justify-between mx-auto items-center py-3 px-10 text-darkteal">
-                            <div className="font-bold text-3xl">Avery Chapman</div>
+                            <div className="font-bold text-3xl cursor-pointer" onClick={() => handleClick("/")}>
+                                Avery Chapman
+                            </div>
 
                             <ul className="flex gap-8 items-center cursor-pointer text-md">
                                 <div
@@ -133,7 +135,9 @@ export default function Navbar() {
                     // Mobile Navbar Code Here
                     <nav className={`h-fit ${bgColor} py-3 px-4`}>
                         <div className="mx-auto flex justify-between items-center py-3 text-darkteal">
-                            <div className="font-bold text-2xl">Avery Chapman</div>
+                            <div className="font-bold text-2xl cursor-pointer" onClick={() => handleClick("/")}>
+                                Avery Chapman
+                            </div>
                             <div className="flex justify-end items-center gap-6 cursor-pointer">
                                 {mobileSocial.map((item, index) =>
                                     item.title === "LinkedIn" ? (
