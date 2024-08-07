@@ -42,7 +42,7 @@ overall theme in `tailwind.config.js`
 
 Theme colors:
 | Color | HexCode |
-| --------------- |
+|--------------|----------|
 | Teal | #476C77 |
 | Dark Teal | #303D40 |
 | Orange | #EEB072 |
