@@ -46,7 +46,7 @@ export default function Navbar() {
     //set up resizing
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth < 769);
+            setIsMobile(window.innerWidth < 769); // this is md breakpoint in tailwind
         };
 
         window.addEventListener("resize", handleResize);
@@ -83,101 +83,108 @@ export default function Navbar() {
             {isLoaded ? (
                 !isMobile ? (
                     // Laptop Navbar Code Here
-                    <nav className={`h-fit ${bgColor} py-3 px-4`}>
-                        <div className="flex justify-between mx-auto items-center py-3 px-10 text-darkteal">
-                            <div className="font-bold text-3xl cursor-pointer" onClick={() => handleClick("/")}>
-                                Avery Chapman
-                            </div>
-
-                            <ul className="flex gap-8 items-center cursor-pointer text-md">
-                                <div
-                                    className="relative"
-                                    onMouseEnter={() => setShowDropdown(true)}
-                                    onMouseLeave={() => setShowDropdown(false)}
-                                >
-                                    <div className="flex items-center gap-2">
-                                        <FaChevronDown />
-                                        My projects
-                                    </div>
-
-                                    {showDropdown && (
-                                        <ul className="absolute left-0 top-full pt-2 bg-white shadow-lg rounded-lg w-48 z-10">
-                                            {projectLinks.map((link, index) => (
-                                                <li
-                                                    key={index}
-                                                    onClick={() => handleClick(link.url)}
-                                                    className="px-4 py-2 hover:bg-gray-200 cursor-pointer rounded-lg"
-                                                >
-                                                    {link.title}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    )}
+                    <nav>
+                        <div className={`h-fit ${bgColor} py-3 px-4`}>
+                            <div className="flex justify-between mx-auto items-center py-3 px-10 text-darkteal">
+                                <div className="font-bold text-3xl cursor-pointer" onClick={() => handleClick("/")}>
+                                    Avery Chapman
                                 </div>
 
-                                {socialLinks.map((item, index) =>
-                                    item.title === "LinkedIn" ? (
-                                        <li key={index}>
-                                            <a target="_blank" href={item.url} rel="noopener noreferrer">
+                                <ul className="flex gap-8 items-center cursor-pointer text-md">
+                                    <div
+                                        className="relative"
+                                        onMouseEnter={() => setShowDropdown(true)}
+                                        onMouseLeave={() => setShowDropdown(false)}
+                                    >
+                                        <div className="flex items-center gap-2">
+                                            <FaChevronDown />
+                                            My projects
+                                        </div>
+
+                                        {showDropdown && (
+                                            <ul className="absolute left-0 top-full pt-2 bg-white shadow-lg rounded-lg w-48 z-10">
+                                                {projectLinks.map((link, index) => (
+                                                    <li
+                                                        key={index}
+                                                        onClick={() => handleClick(link.url)}
+                                                        className="px-4 py-2 hover:bg-gray-200 cursor-pointer rounded-lg"
+                                                    >
+                                                        {link.title}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        )}
+                                    </div>
+
+                                    {socialLinks.map((item, index) =>
+                                        item.title === "LinkedIn" ? (
+                                            <li key={index}>
+                                                <a target="_blank" href={item.url} rel="noopener noreferrer">
+                                                    {item.title}
+                                                </a>
+                                            </li>
+                                        ) : (
+                                            <li key={index} onClick={() => handleClick(item.url)}>
                                                 {item.title}
-                                            </a>
-                                        </li>
-                                    ) : (
-                                        <li key={index} onClick={() => handleClick(item.url)}>
-                                            {item.title}
-                                        </li>
-                                    )
-                                )}
-                            </ul>
+                                            </li>
+                                        )
+                                    )}
+                                </ul>
+                            </div>
                         </div>
+                        <hr className="border-darkteal border-1" />
                     </nav>
                 ) : (
                     // Mobile Navbar Code Here
-                    <nav className={`h-fit ${bgColor} py-3 px-4`}>
-                        <div className="mx-auto flex justify-between items-center py-3 text-darkteal">
-                            <div className="font-bold text-2xl cursor-pointer" onClick={() => handleClick("/")}>
-                                Avery Chapman
-                            </div>
-                            <div className="flex justify-end items-center gap-6 cursor-pointer">
-                                {mobileSocial.map((item, index) =>
-                                    item.title === "LinkedIn" ? (
-                                        <div key={index} className="text-sm">
-                                            <a target="_blank" href={item.url} rel="noopener noreferrer">
+
+                    <nav>
+                        <div className={`h-fit ${bgColor} py-3 px-4`}>
+                            <div className="mx-auto flex justify-between items-center py-3 text-darkteal">
+                                <div className="font-bold text-2xl cursor-pointer" onClick={() => handleClick("/")}>
+                                    Avery Chapman
+                                </div>
+                                <div className="flex justify-end items-center gap-6 cursor-pointer">
+                                    {mobileSocial.map((item, index) =>
+                                        item.title === "LinkedIn" ? (
+                                            <div key={index} className="text-sm">
+                                                <a target="_blank" href={item.url} rel="noopener noreferrer">
+                                                    {item.icon}
+                                                </a>
+                                            </div>
+                                        ) : (
+                                            <div key={index} onClick={() => handleClick(item.url)} className="text-sm">
                                                 {item.icon}
-                                            </a>
-                                        </div>
-                                    ) : (
-                                        <div key={index} onClick={() => handleClick(item.url)} className="text-sm">
-                                            {item.icon}
-                                        </div>
-                                    )
-                                )}
-                                <FaBars size={30} onClick={handleBarsIconClick} className="cursor-pointer" />
-                            </div>
-                        </div>
-                        {showModal && (
-                            <div className="fixed inset-0 flex justify-center items-center text-white">
-                                <div className={`absolute inset-0 ${modalColor}`} />
-                                <FaTimes
-                                    className="absolute top-6 right-4 cursor-pointer"
-                                    onClick={toggleModal}
-                                    style={{ fontSize: "16px" }}
-                                />
-                                <div className="relative w-full">
-                                    <div className="flex flex-col gap-8 items-center justify-center h-full">
-                                        {mobileLinks.map((link, index) => (
-                                            <span
-                                                key={index}
-                                                onClick={() => handleClick(link.url)}
-                                                className="font-light text-2xl cursor-pointer"
-                                            >
-                                                {link.title}
-                                            </span>
-                                        ))}
-                                    </div>
+                                            </div>
+                                        )
+                                    )}
+                                    <FaBars size={30} onClick={handleBarsIconClick} className="cursor-pointer" />
                                 </div>
                             </div>
-                        )}
+                            {showModal && (
+                                <div className="fixed inset-0 flex justify-center items-center text-white">
+                                    <div className={`absolute inset-0 ${modalColor}`} />
+                                    <FaTimes
+                                        className="absolute top-6 right-4 cursor-pointer"
+                                        onClick={toggleModal}
+                                        style={{ fontSize: "16px" }}
+                                    />
+                                    <div className="relative w-full">
+                                        <div className="flex flex-col gap-8 items-center justify-center h-full">
+                                            {mobileLinks.map((link, index) => (
+                                                <span
+                                                    key={index}
+                                                    onClick={() => handleClick(link.url)}
+                                                    className="font-light text-2xl cursor-pointer"
+                                                >
+                                                    {link.title}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                        <hr className="border-darkteal border-1" />
                     </nav>
                 )
             ) : (
