@@ -31,7 +31,7 @@ const mobileSocial = [
     { icon: <FaLinkedin size={35} />, url: "https://www.linkedin.com/in/avery-chapman-8b3722250/", title: "LinkedIn" },
 ];
 
-const bgColor = "bg-white";
+const bgColor = "bg-graypurple";
 const modalColor = "bg-darkteal";
 
 export default function Navbar() {
@@ -102,12 +102,12 @@ export default function Navbar() {
                                         </div>
 
                                         {showDropdown && (
-                                            <ul className="absolute left-0 top-full pt-2 bg-white shadow-lg rounded-lg w-48 z-10">
+                                            <ul className="absolute left-0 top-full pt-2 bg-graypurple shadow-lg rounded-lg w-48 z-10">
                                                 {projectLinks.map((link, index) => (
                                                     <li
                                                         key={index}
                                                         onClick={() => handleClick(link.url)}
-                                                        className="px-4 py-2 hover:bg-gray-200 cursor-pointer rounded-lg"
+                                                        className="px-4 py-2 hover:bg-gray-300 cursor-pointer rounded-lg"
                                                     >
                                                         {link.title}
                                                     </li>

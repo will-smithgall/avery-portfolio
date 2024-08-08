@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 html {
-    @apply bg-teal
+    @apply bg-teal;
+}
+
+footer {
+    @apply bg-graypurple;
 }
